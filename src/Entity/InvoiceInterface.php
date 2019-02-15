@@ -30,5 +30,7 @@ interface InvoiceInterface
 
     public function subtotal(): int;
 
-    public function channel(): InvoiceChannelInterface;
+    public function getChannelCode(): string;
+
+    public function getChannelName(): string;
 }

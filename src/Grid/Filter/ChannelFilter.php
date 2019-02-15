@@ -15,6 +15,6 @@ final class ChannelFilter implements FilterInterface
             return;
         }
 
-        $dataSource->restrict($dataSource->getExpressionBuilder()->equals('o.channel.code', $data['channel']));
+        $dataSource->restrict($dataSource->getExpressionBuilder()->equals('o.channelCode', $data['channel']));
     }
 }

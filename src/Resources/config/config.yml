@@ -53,7 +53,7 @@ sylius_grid:
                 channel:
                     type: string
                     label: sylius.ui.channel
-                    path: channel.name
+                    path: channelName
             filters:
                 orderNumber:
                     type: string

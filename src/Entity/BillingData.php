@@ -9,35 +9,35 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 /** @final */
 class BillingData implements BillingDataInterface, ResourceInterface
 {
-    /** @var string */
-    private $id;
+    /** @var int */
+    protected $id;
 
     /** @var string */
-    private $firstName;
+    protected $firstName;
 
     /** @var string */
-    private $lastName;
+    protected $lastName;
 
     /** @var string|null */
-    private $company;
+    protected $company;
 
     /** @var string */
-    private $countryCode;
+    protected $countryCode;
 
     /** @var string|null */
-    private $provinceCode;
+    protected $provinceCode;
 
     /** @var string|null */
-    private $provinceName;
+    protected $provinceName;
 
     /** @var string */
-    private $street;
+    protected $street;
 
     /** @var string */
-    private $city;
+    protected $city;
 
     /** @var string */
-    private $postcode;
+    protected $postcode;
 
     public function __construct(
         string $firstName,

@@ -11,37 +11,40 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 class Invoice implements InvoiceInterface, ResourceInterface
 {
     /** @var string */
-    private $id;
+    protected $id;
 
     /** @var string */
-    private $number;
+    protected $number;
 
     /** @var string */
-    private $orderNumber;
+    protected $orderNumber;
 
     /** @var \DateTimeInterface */
-    private $issuedAt;
+    protected $issuedAt;
 
     /** @var BillingDataInterface */
-    private $billingData;
+    protected $billingData;
 
     /** @var string */
-    private $currencyCode;
+    protected $currencyCode;
 
     /** @var string */
-    private $localeCode;
+    protected $localeCode;
 
     /** @var int */
-    private $total;
+    protected $total;
 
     /** @var Collection|LineItemInterface[] */
-    private $lineItems;
+    protected $lineItems;
 
     /** @var Collection|TaxItemInterface[] */
-    private $taxItems;
+    protected $taxItems;
 
-    /** @var InvoiceChannelInterface */
-    private $channel;
+    /** @var string */
+    protected $channelCode;
+
+    /** @var string */
+    protected $channelName;
 
     public function __construct(
         string $id,
@@ -54,7 +57,8 @@ class Invoice implements InvoiceInterface, ResourceInterface
         int $total,
         Collection $lineItems,
         Collection $taxItems,
-        InvoiceChannelInterface $channel
+        string $channelCode,
+        string $channelName
     ) {
         $this->id = $id;
         $this->number = $number;
@@ -66,7 +70,8 @@ class Invoice implements InvoiceInterface, ResourceInterface
         $this->total = $total;
         $this->lineItems = $lineItems;
         $this->taxItems = $taxItems;
-        $this->channel = $channel;
+        $this->channelCode = $channelCode;
+        $this->channelName = $channelName;
 
         /** @var LineItemInterface $lineItem */
         foreach ($lineItems as $lineItem) {
@@ -146,8 +151,13 @@ class Invoice implements InvoiceInterface, ResourceInterface
         return $subtotal;
     }
 
-    public function channel(): InvoiceChannelInterface
+    public function getChannelCode(): string
     {
-        return $this->channel;
+        return $this->channelCode;
+    }
+
+    public function getChannelName(): string
+    {
+        return $this->channelName;
     }
 }
