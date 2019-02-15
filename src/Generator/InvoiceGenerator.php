@@ -53,7 +53,8 @@ final class InvoiceGenerator implements InvoiceGeneratorInterface
             $order->getTotal(),
             $this->prepareLineItems($order),
             $this->prepareTaxItems($order),
-            new InvoiceChannel($channel->getCode(), $channel->getName())
+            $channel->getCode(),
+            $channel->getName()
         );
     }
 

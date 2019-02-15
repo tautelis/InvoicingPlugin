@@ -9,7 +9,6 @@ use PhpSpec\ObjectBehavior;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Sylius\InvoicingPlugin\Entity\InvoiceChannelInterface;
 use Sylius\InvoicingPlugin\Entity\InvoiceInterface;
 use Sylius\InvoicingPlugin\Generator\InvoicePdfFileGeneratorInterface;
 use Sylius\InvoicingPlugin\Model\InvoicePdf;
@@ -43,14 +42,11 @@ final class InvoicePdfFileGeneratorSpec extends ObjectBehavior
         EngineInterface $twig,
         GeneratorInterface $pdfGenerator,
         InvoiceInterface $invoice,
-        ChannelInterface $channel,
-        InvoiceChannelInterface $invoiceChannel
+        ChannelInterface $channel
     ): void {
         $invoiceRepository->find(1)->willReturn($invoice);
         $invoice->number()->willReturn('2015/05/00004444');
-        $invoice->channel()->willReturn($invoiceChannel);
-
-        $invoiceChannel->getCode()->willReturn('en_US');
+        $invoice->getChannelCode()->willReturn('en_US');
 
         $channelRepository->findOneByCode('en_US')->willReturn($channel);
 

@@ -48,7 +48,7 @@ final class InvoicePdfFileGenerator implements InvoicePdfFileGeneratorInterface
     {
         $invoice = $this->invoiceRepository->find($invoiceId);
 
-        $channel = $this->channelRepository->findOneByCode($invoice->channel()->getCode());
+        $channel = $this->channelRepository->findOneByCode($invoice->getChannelCode());
 
         $filename = str_replace('/', '_', $invoice->number()) . self::FILE_EXTENSION;
 
